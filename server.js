@@ -7,7 +7,7 @@ var randomString = require('randomstring');
 var port = process.env.PORT || 3000
 
 // Mongodb Connection Url
-var url = 'mongodb://localhost:27017/urlshortener';
+var url = process.env.MONGOLAB_URI;
 
 app.use('/new', function(req, res){
 	var reqUrl = req.originalUrl.slice(5);
