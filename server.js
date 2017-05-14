@@ -27,7 +27,7 @@ app.use('/new', function(req, res){
 					if (err) { throw(err); }
 					var response = result.ops[0];
 					delete response._id;
-					response['short_url'] = "http://localhost:3000/" + shortenedUrl;
+					response['short_url'] = "https://quiet-woodland-96954.herokuapp.com/" + shortenedUrl;
 					res.send(response);
 				});
 
