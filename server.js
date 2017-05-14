@@ -48,7 +48,7 @@ app.use('/new', function(req, res){
 
 app.use('/', function(req, res){
 	if(req.originalUrl){
-		var shorUrl = req.originalUrl.slice(1);
+		var shortUrl = req.originalUrl.slice(1);
 	}
 	mongoClient.connect(url, function(err, db){
 		if(err) { throw(err); }
@@ -56,19 +56,27 @@ app.use('/', function(req, res){
 
 		var collection = db.collection('urls');
 
-		if(shorUrl){
-			collection.find({short_url: shorUrl}).toArray(function(err, doc){
+		if(shortUrl){
+			collection.find({short_url: shortUrl}).toArray(function(err, doc){
 				if (err) { throw(err) };
+				console.log(doc);
 				if (doc.length > 0){
-					res.redirect(doc[0].original_url);
+					if (doc[0].original_url.startsWith('http')){
+						res.redirect(doc[0].original_url);
+					}else{
+						res.redirect('http://' + doc[0].original_url);
+					}
 				}else{
 					res.send("Sorry the short link doesn't exist");
 				}
 			});
+		}else{
+			res.send("Enter a Url to Shorten or enter a shortened Url, see usage example");
 		}
-		db.close();
 	});
 });
+
+
 
 var server = app.listen(port, function(){
 	console.log("Server started on port " + port);
