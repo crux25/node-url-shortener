@@ -1,0 +1,24 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "\"Shortens any url passed as parameter and returns a JSON of the shortened URL. \",",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "URL",
+    "Shortener"
+  ],
+  "author": "Amos Ezeme",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^2.2.26",
+    "randomstring": "^1.1.5"
+  },
+  "engines": {
+    "node": "7.8.0"
+  }
+}
